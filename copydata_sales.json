@@ -1,0 +1,93 @@
+{
+    "name": "COPY_SALES",
+    "type": "Copy",
+    "dependsOn": [],
+    "policy": {
+        "timeout": "0.12:00:00",
+        "retry": 0,
+        "retryIntervalInSeconds": 30,
+        "secureOutput": false,
+        "secureInput": false
+    },
+    "typeProperties": {
+        "source": {
+            "type": "DelimitedTextSource",
+            "storeSettings": {
+                "type": "AzureBlobFSReadSettings",
+                "recursive": true,
+                "enablePartitionDiscovery": false
+            },
+            "formatSettings": {
+                "type": "DelimitedTextReadSettings",
+                "skipLineCount": 0
+            },
+            "datasetSettings": {
+                "annotations": [],
+                "type": "DelimitedText",
+                "typeProperties": {
+                    "location": {
+                        "type": "AzureBlobFSLocation",
+                        "fileName": "sales.csv",
+                        "fileSystem": "data-rstate-datapath"
+                    },
+                    "columnDelimiter": ",",
+                    "rowDelimiter": "\n",
+                    "escapeChar": "\\",
+                    "firstRowAsHeader": true,
+                    "quoteChar": "\""
+                },
+                "schema": [],
+                "externalReferences": {
+                    "connection": "ac2cc6da-decc-4a27-888b-12745916e604"
+                }
+            }
+        },
+        "sink": {
+            "type": "DelimitedTextSink",
+            "storeSettings": {
+                "type": "LakehouseWriteSettings"
+            },
+            "formatSettings": {
+                "type": "DelimitedTextWriteSettings",
+                "fileExtension": ".txt"
+            },
+            "datasetSettings": {
+                "annotations": [],
+                "linkedService": {
+                    "name": "LKH_RSTATE_DEV_001",
+                    "properties": {
+                        "annotations": [],
+                        "type": "Lakehouse",
+                        "typeProperties": {
+                            "workspaceId": "152dddc2-32ff-4f65-ab73-61e0a73fca86",
+                            "artifactId": "417cbed1-16c3-4aca-86ec-38f6587dd7cb",
+                            "rootFolder": "Files"
+                        }
+                    }
+                },
+                "type": "DelimitedText",
+                "typeProperties": {
+                    "location": {
+                        "type": "LakehouseLocation",
+                        "fileName": "sales.csv",
+                        "folderPath": "raw"
+                    },
+                    "columnDelimiter": ",",
+                    "escapeChar": "\\",
+                    "firstRowAsHeader": true,
+                    "quoteChar": "\""
+                },
+                "schema": []
+            }
+        },
+        "enableStaging": false,
+        "translator": {
+            "type": "TabularTranslator",
+            "typeConversion": true,
+            "typeConversionSettings": {
+                "allowDataTruncation": true,
+                "treatBooleanAsNumber": false
+            }
+        }
+    }
+}
