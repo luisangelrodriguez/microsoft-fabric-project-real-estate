@@ -2,7 +2,7 @@
 
 ## 📌 Descripción
 
-Este proyecto presenta la implementación de una **arquitectura Data-Driven en Microsoft Fabric** para la empresa ficticia **Martinica RealState**, una desarrolladora y comercializadora de proyectos inmobiliarios en Latinoamérica.  
+Este proyecto presenta la implementación de una **arquitectura Data-Driven en Microsoft Fabric** para la empresa ficticia **Martinica Real Estate**, una desarrolladora y comercializadora de proyectos inmobiliarios en Latinoamérica.  
 
 El objetivo es resolver la problemática de datos fragmentados en múltiples archivos planos y reportes manuales en Excel, mediante una solución integral de ingesta, transformación, modelado y visualización de datos en **Microsoft Fabric**.
 
